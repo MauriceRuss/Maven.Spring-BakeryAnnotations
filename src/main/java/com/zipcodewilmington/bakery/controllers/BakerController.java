@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Entity;
 
-@Controller
+@RestController
 public class BakerController {
 
     private BakerService service;
@@ -20,7 +20,7 @@ public class BakerController {
     public BakerController(BakerService service) {
         this.service = service;
     }
-    @GetMapping("/bakers/")
+    @GetMapping("/bakers")
     public ResponseEntity<Iterable<Baker>> index() {
         return new ResponseEntity<>(service.index(), HttpStatus.OK);
     }
@@ -28,7 +28,7 @@ public class BakerController {
     public ResponseEntity<Baker> show(@PathVariable Long id) {
         return new ResponseEntity<>(service.show(id), HttpStatus.OK);
     }
-    @PostMapping("/bakers/")
+    @PostMapping("/bakers")
     public ResponseEntity<Baker> create(@RequestBody Baker baker) {
         return new ResponseEntity<>(service.create(baker), HttpStatus.CREATED);
     }
